@@ -14,7 +14,7 @@ management:
     health:
       show-details: always
 info:
-  author: Tulio L. Viglione
-  mail: tulio.l.viglione@gmail.com
+  author: Belicio Batista Cardoso
+  mail: belloinfo@gmail.com
 server:
   port: ${PORT:9999}

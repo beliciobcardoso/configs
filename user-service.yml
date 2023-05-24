@@ -1,3 +1,3 @@
 server:
-  port: ${PORT:8091}
+  port: ${PORT:8095}
 message: Teste user-service

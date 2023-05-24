@@ -1,0 +1,3 @@
+server:
+  port: ${PORT:8094}
+message: Teste course-service

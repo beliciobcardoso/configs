@@ -5,6 +5,13 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: courseRoute
+          uri: lb://COURSE-SERVICE
+          predicates:
+            - Path=/course/**
+          filters:
+            - AddRequestHeader=course-request-header, custom-course-request-header
+            - AddResponseHeader=course-response-header, custom-course-response-header
         - id: weatherServiceRoute
           uri: lb://weather-service
           predicates:

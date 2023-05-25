@@ -1,0 +1,22 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: weather-service
+          uri: lb://weather-service
+          predicates:
+            - Path=/**
+        - id: product-service #identificador da rota
+          uri: http://localhost:8087 #URL onde se far� o redirect conforme o predicado definido
+          predicates: #Regras de an�lises da request
+            - Path=/product/**
+        - id: user-service #identificador da rota
+          uri: http://localhost:8089
+          predicates:
+            - Path=/users/**
+          filters:
+            - AddRequestHeader=user-request-header, custom-user-request-header
+            - AddResponseHeader=user-response-header, custom-user-response-header

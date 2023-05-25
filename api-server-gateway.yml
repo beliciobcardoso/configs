@@ -20,6 +20,10 @@ spring:
           uri: lb://product-service #URL onde se far� o redirect conforme o predicado definido
           predicates: #Regras de an�lises da request
             - Path=/products/**
+        - id: productUserServiceRoute #identificador da rota
+          uri: lb://product-service #URL onde se far� o redirect conforme o predicado definido
+          predicates: #Regras de an�lises da request
+            - Path=/productuser/**
         - id: userServiceRoute #identificador da rota
           uri: lb://user-service
           predicates:

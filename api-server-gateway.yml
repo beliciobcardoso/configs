@@ -5,16 +5,16 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: weather-service
+        - id: weatherServiceRoute
           uri: lb://weather-service
           predicates:
             - Path=/**
-        - id: product-service #identificador da rota
+        - id: productServiceRoute #identificador da rota
           uri: http://localhost:8087 #URL onde se far� o redirect conforme o predicado definido
           predicates: #Regras de an�lises da request
             - Path=/product/**
-        - id: user-service #identificador da rota
-          uri: lb://user-service
+        - id: userServiceRoute #identificador da rota
+          uri: lb://userServiceRoute
           predicates:
             - Path=/users/**
           filters:

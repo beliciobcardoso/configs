@@ -19,11 +19,11 @@ spring:
         - id: productServiceRoute #identificador da rota
           uri: lb://product-service #URL onde se far� o redirect conforme o predicado definido
           predicates: #Regras de an�lises da request
-            - Path=/products/**
+            - Path=/**
         - id: userServiceRoute #identificador da rota
           uri: lb://user-service
           predicates:
-            - Path=/users/**
+            - Path=/**
           # filters:
           #   - AddRequestHeader=user-request-header, custom-user-request-header
           #   - AddResponseHeader=user-response-header, custom-user-response-header

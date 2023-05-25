@@ -10,11 +10,11 @@ spring:
           predicates:
             - Path=/**
         - id: productServiceRoute #identificador da rota
-          uri: http://localhost:8087 #URL onde se far� o redirect conforme o predicado definido
+          uri: lb://product-service #URL onde se far� o redirect conforme o predicado definido
           predicates: #Regras de an�lises da request
             - Path=/product/**
         - id: userServiceRoute #identificador da rota
-          uri: lb://userServiceRoute
+          uri: lb://user-service
           predicates:
             - Path=/users/**
           filters:

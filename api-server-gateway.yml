@@ -23,7 +23,7 @@ spring:
         - id: userServiceRoute #identificador da rota
           uri: lb://user-service
           predicates:
-            - Path=/**
+            - Path=/users/**
           # filters:
           #   - AddRequestHeader=user-request-header, custom-user-request-header
           #   - AddResponseHeader=user-response-header, custom-user-response-header

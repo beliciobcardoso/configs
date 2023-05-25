@@ -14,7 +14,7 @@ spring:
           predicates: #Regras de an�lises da request
             - Path=/product/**
         - id: user-service #identificador da rota
-          uri: lb://weather-service
+          uri: lb://user-service
           predicates:
             - Path=/users/**
           filters:

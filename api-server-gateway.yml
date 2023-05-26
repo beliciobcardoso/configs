@@ -4,26 +4,43 @@ server:
 spring:
   cloud:
     gateway:
+      default-filters:
+        - name: LogFilter
+          args:
+            baseMessage: Spring Cloud Gateway Global Filter
+            preLogger: true
+            postLogger: true
       routes:
-        # - id: courseRoute
-        #   uri: lb://COURSE-SERVICE
-        #   predicates:
-        #     - Path=/**
-        #   filters:
-        #     - AddRequestHeader=course-request-header, custom-course-request-header
-        #     - AddResponseHeader=course-response-header, custom-course-response-header
+        - id: SubscriptionRoute
+          uri: lb://subscription-service
+          predicates:
+            - Path=/subscription/**
+
+        - id: courseRoute
+          uri: lb://COURSE-SERVICE
+          predicates:
+            - Path=/course/**
+          filters:
+            - AddRequestHeader=course-request-header, custom-course-request-header
+            - AddResponseHeader=course-response-header, custom-course-response-header
+
         - id: weatherServiceRoute
           uri: lb://weather-service
           predicates:
             - Path=/weather/**
+          filters:
+            - Weatherfilter
+
         - id: productServiceRoute #identificador da rota
           uri: lb://product-service #URL onde se far� o redirect conforme o predicado definido
           predicates: #Regras de an�lises da request
             - Path=/products/**
+
         - id: productUserServiceRoute #identificador da rota
           uri: lb://product-service #URL onde se far� o redirect conforme o predicado definido
           predicates: #Regras de an�lises da request
             - Path=/productuser/**
+
         - id: userServiceRoute #identificador da rota
           uri: lb://user-service
           predicates:

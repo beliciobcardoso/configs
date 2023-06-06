@@ -5,12 +5,20 @@ spring:
   cloud:
     gateway:
       default-filters:
+        - name: TokenRelay
         - name: LogFilter
           args:
             baseMessage: Spring Cloud Gateway Global Filter
             preLogger: true
             postLogger: true
       routes:
+        - id: accountRoute
+          uri: http://localhost:8080
+          predicates:
+            - Path=/account/**
+          filters:
+            - AddRequestHeader=account-request-header, custom-account-request-header
+            - AddResponseHeader=account-response-header, custom-account-response-header
         - id: SubscriptionRoute
           uri: lb://subscription-service
           predicates:

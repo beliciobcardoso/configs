@@ -2,6 +2,10 @@ server:
   port: ${PORT:8080}
 
 spring:
+  config:
+    import: optional:configserver:http://localhost:8888/
+  application:
+    name: api-server-gateway
   cloud:
     gateway:
       default-filters:
@@ -19,6 +23,7 @@ spring:
           filters:
             - AddRequestHeader=account-request-header, custom-account-request-header
             - AddResponseHeader=account-response-header, custom-account-response-header
+
         - id: SubscriptionRoute
           uri: lb://subscription-service
           predicates:

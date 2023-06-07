@@ -2,6 +2,19 @@ server:
   port: ${PORT:8080}
 
 spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          google:
+            issuer-uri: https://accounts.google.com
+            token-uri: https://oauth2.googleapis.com/token
+          reristraion:
+            google:
+              client-id: ${GOOGLE_CLIENT_ID}
+              client-secret: ${GOOGLE_CLIENT_SECRET}
+              scope: openid
+              redirect-uri: "http://localhost:8080/login/oauth2/code/google"
   config:
     import: optional:configserver:http://localhost:8888/
   application:

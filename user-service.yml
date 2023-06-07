@@ -1,3 +1,5 @@
 server:
   port: ${PORT:8097}
+  servlet:
+    context-path: /user-api
 message: Teste user-service

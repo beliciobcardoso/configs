@@ -5,7 +5,7 @@ spring:
   cloud:
     gateway:
       default-filters:
-        - name: TokenRelay
+        - TokenRelay
         - name: LogFilter
           args:
             baseMessage: Spring Cloud Gateway Global Filter

@@ -1,7 +1,5 @@
 server:
   port: ${PORT:8080}
-#  servlet:
-#    context-path: /gateway-api
 cloud:
   gateway:
     default-filters:
@@ -12,10 +10,6 @@ cloud:
           preLogger: true
           postLogger: true
     routes:
- #     - id: GatewayRoute
- #       uri: lb://API-SERVER-GATEWAY
- #       predicates:
- #         - Path=/gateway-api/**
       - id: SubscriptionRoute
         uri: lb://subscription-service
         predicates:

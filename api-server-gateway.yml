@@ -1,16 +1,5 @@
 server:
   port: ${PORT:8080}
-
-spring:
-  security:
-    oauth2:
-      client:
-        reristraion:
-          google:
-            client-id: "523926492825-cj0k0evl13gqdugaolo9vvneacfdj4u5.apps.googleusercontent.com"
-            client-secret: "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"
-            scope: openid
-            redirect-uri: "http://localhost:8080/login/oauth2/code/google"
 cloud:
   gateway:
     default-filters:

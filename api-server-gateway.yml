@@ -18,12 +18,10 @@ spring:
           filters:
             - AddRequestHeader=account-request-header, custom-account-request-header
             - AddResponseHeader=account-response-header, custom-account-response-header
-
         - id: SubscriptionRoute
           uri: lb://subscription-service
           predicates:
             - Path=/subscription/**
-
         - id: courseRoute
           uri: lb://COURSE-SERVICE
           predicates:
@@ -31,24 +29,20 @@ spring:
           filters:
             - AddRequestHeader=course-request-header, custom-course-request-header
             - AddResponseHeader=course-response-header, custom-course-response-header
-
         - id: weatherServiceRoute
           uri: lb://weather-service
           predicates:
             - Path=/weather/**
           filters:
             - Weatherfilter
-
         - id: productServiceRoute #identificador da rota
           uri: lb://product-service #URL onde se far� o redirect conforme o predicado definido
           predicates: #Regras de an�lises da request
             - Path=/products/**
-
         - id: productUserServiceRoute #identificador da rota
           uri: lb://product-service #URL onde se far� o redirect conforme o predicado definido
           predicates: #Regras de an�lises da request
             - Path=/productuser/**
-
         - id: userServiceRoute #identificador da rota
           uri: lb://user-service
           predicates:

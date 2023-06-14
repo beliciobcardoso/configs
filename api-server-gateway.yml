@@ -1,68 +1,58 @@
 server:
   port: ${PORT:8080}
-
 spring:
-  security:
-    oauth2:
-      client:
-        reristraion:
-          google:
-            client-id: "523926492825-cj0k0evl13gqdugaolo9vvneacfdj4u5.apps.googleusercontent.com"
-            client-secret: "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"
-            scope: openid
-            redirect-uri: "http://localhost:8080/login/oauth2/code/google"
-cloud:
-  gateway:
-    default-filters:
-      - TokenRelay
-      - name: LogFilter
-        args:
-          baseMessage: Spring Cloud Gateway Global Filter
-          preLogger: true
-          postLogger: true
-    routes:
-      - id: accountRoute
-        uri: http://localhost:8080
-        predicates:
-          - Path=/account/**
-        filters:
-          - AddRequestHeader=account-request-header, custom-account-request-header
-          - AddResponseHeader=account-response-header, custom-account-response-header
+  cloud:
+    gateway:
+      default-filters:
+        - TokenRelay
+        - name: LogFilter
+          args:
+            baseMessage: Spring Cloud Gateway Global Filter
+            preLogger: true
+            postLogger: true
+      routes:
+        - id: accountRoute
+          uri: http://localhost:8080
+          predicates:
+            - Path=/account/**
+          filters:
+            - AddRequestHeader=account-request-header, custom-account-request-header
+            - AddResponseHeader=account-response-header, custom-account-response-header
 
-      - id: SubscriptionRoute
-        uri: lb://subscription-service
-        predicates:
-          - Path=/subscription/**
+        - id: SubscriptionRoute
+          uri: lb://subscription-service
+          predicates:
+            - Path=/subscription/**
 
-      - id: courseRoute
-        uri: lb://COURSE-SERVICE
-        predicates:
-          - Path=/course/**
-        filters:
-          - AddRequestHeader=course-request-header, custom-course-request-header
-          - AddResponseHeader=course-response-header, custom-course-response-header
+        - id: courseRoute
+          uri: lb://COURSE-SERVICE
+          predicates:
+            - Path=/course/**
+          filters:
+            - AddRequestHeader=course-request-header, custom-course-request-header
+            - AddResponseHeader=course-response-header, custom-course-response-header
 
-      - id: weatherServiceRoute
-        uri: lb://weather-service
-        predicates:
-          - Path=/weather/**
-        filters:
-          - Weatherfilter
+        - id: weatherServiceRoute
+          uri: lb://weather-service
+          predicates:
+            - Path=/weather/**
+          filters:
+            - Weatherfilter
 
-      - id: productServiceRoute #identificador da rota
-        uri: lb://product-service #URL onde se far� o redirect conforme o predicado definido
-        predicates: #Regras de an�lises da request
-          - Path=/products/**
+        - id: productServiceRoute #identificador da rota
+          uri: lb://product-service #URL onde se far� o redirect conforme o predicado definido
+          predicates: #Regras de an�lises da request
+            - Path=/products/**
 
-      - id: productUserServiceRoute #identificador da rota
-        uri: lb://product-service #URL onde se far� o redirect conforme o predicado definido
-        predicates: #Regras de an�lises da request
-          - Path=/productuser/**
+        - id: productUserServiceRoute #identificador da rota
+          uri: lb://product-service #URL onde se far� o redirect conforme o predicado definido
+          predicates: #Regras de an�lises da request
+            - Path=/productuser/**
 
-      - id: userServiceRoute #identificador da rota
-        uri: lb://user-service
-        predicates:
-          - Path=/user-api/**
-        filters:
-          - AddRequestHeader=user-request-header, custom-user-request-header
-          - AddResponseHeader=user-response-header, custom-user-response-header
+        - id: userServiceRoute #identificador da rota
+          uri: lb://user-service
+          predicates:
+            - Path=/user-api/**
+          filters:
+            - AddRequestHeader=user-request-header, custom-user-request-header
+            - AddResponseHeader=user-response-header, custom-user-response-header
